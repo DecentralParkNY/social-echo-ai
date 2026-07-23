@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echo Chamber | Social Ghostwriter</title>
+    <style>
+        :root {
+            --obsidian: #0a0a0c;
+            --violet: #bc13fe;
+            --glow: rgba(188, 19, 254, 0.4);
+            --text: #e0e0e0;
+        }
+        body {
+            background: var(--obsidian);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--violet);
+            margin-bottom: 0.5rem;
+        }
+        p.pitch {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 4rem;
+        }
+        .orb-container {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .orb {
+            width: 120px;
+            height: 120px;
+            background: var(--violet);
+            border-radius: 50%;
+            box-shadow: 0 0 30px var(--glow), 0 0 60px var(--glow);
+            animation: pulse 3s infinite ease-in-out;
+            transition: transform 0.2s ease;
+        }
+        .orb:active {
+            transform: scale(0.95);
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px var(--glow); }
+            50% { transform: scale(1.1); box-shadow: 0 0 60px var(--violet); }
+        }
+        .status {
+            margin-top: 2rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--violet);
+        }
+        #insight {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 20, 25, 0.9);
+            border: 1px solid var(--violet);
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: #fff;
+        }
+        #insight.show {
+            opacity: 1;
+            top: -100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Echo Chamber</h1>
+        <p class="pitch">The social ghostwriter for your inner circle.</p>
+        
+        <div class="orb-container" onclick="showInsight()">
+            <div id="insight">Sarah mentioned she loves peonies last Tuesday.</div>
+            <div class="orb"></div>
+        </div>
+        
+        <div class="status">● Listening...</div>
+    </div>
+
+    <script>
+        function showInsight() {
+            const insight = document.getElementById('insight');
+            insight.classList.add('show');
+            setTimeout(() => {
+                insight.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
